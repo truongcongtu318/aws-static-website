@@ -54,14 +54,11 @@ import Navbar from '../components/Navbar.astro';
           </div>
         </div>
 
-        <!-- Card 2: Technical Stack -->
-        <div class="bento-item stack-card">
-          <span class="stack-label">Core Tech</span>
-          <div class="stack-items">
-            <span class="stack-pill">AWS</span>
-            <span class="stack-pill">Docker</span>
-            <span class="stack-pill">Terraform</span>
-          </div>
+        <!-- Card 2: Education -->
+        <div class="bento-item edu-card">
+          <span class="badge gray">Education</span>
+          <h4>ICT Student</h4>
+          <span class="comp-small">VKU University</span>
         </div>
 
         <!-- Card 3: Previous Role -->
@@ -312,19 +309,14 @@ import Navbar from '../components/Navbar.astro';
   .current-job p { opacity: 0.6; font-size: 0.9rem; margin-bottom: 20px; }
   .card-footer .date { font-size: 0.75rem; font-weight: 600; opacity: 0.4; }
 
-  /* Stack Card */
-  .stack-card {
-    background: #E3F2FD;
-    padding: 24px;
-  }
-  
-  /* Past Job Card */
-  .past-job {
+  /* Education & Past Job Card */
+  .edu-card, .past-job {
     background: #F5F5F5;
     padding: 24px;
+    min-height: 140px;
   }
-  .past-job h4 { font-size: 1rem; margin: 8px 0 4px; }
-  .comp-small { font-size: 0.8rem; color: var(--secondary); font-weight: 600; }
+  .edu-card h4, .past-job h4 { font-size: 1.1rem; margin: 12px 0 4px; letter-spacing: -0.5px; }
+  .comp-small { font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
 
   .stack-label {
     display: block;
