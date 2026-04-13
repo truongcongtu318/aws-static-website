@@ -1,20 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import Navbar from '../components/Navbar.astro';
 ---
 
 <Layout title="Truong Tu | Cloud Engineer & Developer">
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">T.TU <span class="dot">.</span></div>
-    <ul class="nav-links">
-      <li><a href="/" class="active">About</a></li>
-      <li><a href="/portfolio">Portfolio</a></li>
-      <li><a href="/services">Services</a></li>
-      <li><a href="/blog">Blog</a></li>
-    </ul>
-    <a href="mailto:tct31082004@gmail.com" class="btn-pill">Book A Call ↗</a>
-  </nav>
+  <Navbar active="about" />
 
   <!-- Hero -->
   <section class="hero">
@@ -64,22 +55,6 @@ import ServiceCard from '../components/ServiceCard.astro';
     position: absolute;
     top: 0; left: 0; right: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 5%;
-    z-index: 10;
-  }
-  .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
-  .logo .dot { color: var(--secondary); }
-  .nav-links { display: flex; list-style: none; gap: 40px; }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--secondary);
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-  }
-  .nav-links a.active, .nav-links a:hover { color: var(--primary); }
 
   /* ─── Hero ───────────────────────────────── */
   .hero {

@@ -1,0 +1,80 @@
+---
+interface Props {
+  active?: string;
+}
+const { active = "" } = Astro.props;
+---
+
+<nav class="navbar">
+  <div class="logo">T.TU <span class="dot">.</span></div>
+  <ul class="nav-links">
+    <li><a href="/" class={active === "about" ? "active" : ""}>About Me</a></li>
+    <li><a href="/portfolio" class={active === "portfolio" ? "active" : ""}>Portfolio</a></li>
+    <li><a href="/services" class={active === "services" ? "active" : ""}>Services</a></li>
+    <li><a href="/blog" class={active === "blog" ? "active" : ""}>Blog</a></li>
+  </ul>
+  <a href="mailto:tct31082004@gmail.com" class="book-call">
+    Book A Call ↗
+  </a>
+</nav>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 5%;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -1px;
+    color: var(--primary);
+  }
+
+  .logo .dot { color: var(--secondary); }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a.active,
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+
+  /* Book A Call - dạng gạch dưới như Dribbble */
+  .book-call {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-bottom: 1.5px solid var(--primary);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .book-call:hover {
+    opacity: 0.6;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .navbar { padding: 24px 5%; }
+  }
+</style>

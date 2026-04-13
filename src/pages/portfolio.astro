@@ -1,58 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
 
 const projects = [
   {
-    id: 1,
-    title: "AWS Static Website",
-    tags: ["AWS S3", "CloudFront", "GitHub Actions", "Astro"],
-    desc: "Website portfolio triển khai trên AWS với CI/CD Pipeline hoàn chỉnh sử dụng OIDC.",
+    title: "AWS Static Website CI/CD",
+    tags: ["S3", "CloudFront", "GitHub Actions", "Astro"],
+    desc: "Portfolio website deployed on AWS with a full CI/CD pipeline using OIDC authentication — no secrets stored.",
     year: "2024",
     color: "#F0F0F0"
   },
   {
-    id: 2,
-    title: "3-Tier Architecture",
-    tags: ["AWS ECS", "Docker", "RDS", "ALB"],
-    desc: "Kiến trúc ứng dụng 3 lớp hoàn chỉnh trên AWS Cloud với khả năng scale tự động.",
+    title: "3-Tier Architecture on AWS",
+    tags: ["ECS Fargate", "Docker", "RDS", "ALB"],
+    desc: "Complete 3-tier application architecture on AWS Cloud with auto-scaling and load balancing.",
     year: "2024",
-    color: "#E8E8FF"
+    color: "#EAE8FF"
   },
   {
-    id: 3,
-    title: "Serverless API",
+    title: "Serverless REST API",
     tags: ["Lambda", "API Gateway", "DynamoDB"],
-    desc: "RESTful API không máy chủ với khả năng xử lý hàng triệu request mỗi ngày.",
+    desc: "Serverless RESTful API capable of handling millions of requests per day with zero server management.",
     year: "2024",
-    color: "#F0F8F0"
+    color: "#E8F5E9"
   },
   {
-    id: 4,
-    title: "DevOps Dashboard",
+    title: "DevOps Monitoring Dashboard",
     tags: ["Kubernetes", "Prometheus", "Grafana"],
-    desc: "Hệ thống giám sát và quan sát toàn diện cho microservices trên Kubernetes.",
+    desc: "Comprehensive monitoring and observability stack for microservices running on Kubernetes.",
     year: "2024",
-    color: "#FFF5E8"
+    color: "#FFF3E0"
   },
 ];
 ---
 
-<Layout title="Portfolio | TruongTu Dev">
-  <nav class="navbar">
-    <div class="logo">D.NOVA <span class="dot">.</span></div>
-    <ul class="nav-links">
-      <li><a href="/">How we work</a></li>
-      <li><a href="/portfolio" class="active">Portfolio</a></li>
-      <li><a href="/services">Services</a></li>
-      <li><a href="/blog">Blog</a></li>
-    </ul>
-    <a href="/#contact" class="btn-pill">Book A Call ↗</a>
-  </nav>
+<Layout title="Portfolio | Truong Tu Dev">
+  <Navbar active="portfolio" />
 
-  <main class="portfolio-page">
+  <main class="page">
     <div class="page-header">
-      <h1>My <span class="muted">Work</span></h1>
-      <p>Bộ sưu tập các dự án Cloud & DevOps của tôi</p>
+      <div>
+        <h1>My <span class="muted">Work</span></h1>
+        <p>A collection of my Cloud & DevOps projects</p>
+      </div>
+      <div class="header-count">
+        <span>{projects.length}</span>
+        <small>Projects</small>
+      </div>
     </div>
 
     <div class="projects-grid">
@@ -61,8 +55,8 @@ const projects = [
           <div class="project-visual"></div>
           <div class="project-info">
             <div class="project-meta">
-              <span class="project-year">{p.year}</span>
-              <div class="project-tags">
+              <span class="year">{p.year}</span>
+              <div class="tags">
                 {p.tags.map(tag => <span class="tag">{tag}</span>)}
               </div>
             </div>
@@ -77,99 +71,112 @@ const projects = [
 </Layout>
 
 <style>
-  .navbar {
+  .page { padding: 40px 5% 120px; }
+
+  .page-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 32px 5%;
+    align-items: flex-start;
+    margin-bottom: 80px;
   }
-  .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
-  .logo .dot { color: var(--secondary); }
-  .nav-links { display: flex; list-style: none; gap: 40px; }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--secondary);
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  .nav-links a.active, .nav-links a:hover { color: var(--primary); }
 
-  .portfolio-page { padding: 60px 5% 120px; }
-
-  .page-header { margin-bottom: 80px; }
   .page-header h1 {
     font-size: clamp(3rem, 8vw, 7rem);
     letter-spacing: -4px;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .muted { color: var(--secondary); }
-  .page-header p { font-size: 1.1rem; color: var(--secondary); }
+  .page-header p { font-size: 1rem; color: var(--secondary); }
+
+  .header-count {
+    text-align: right;
+    padding-top: 8px;
+  }
+  .header-count span {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+  }
+  .header-count small {
+    font-size: 0.75rem;
+    color: var(--secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
 
   .project-card {
-    border-radius: 32px;
+    border-radius: 28px;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
   }
-  .project-card:hover { transform: translateY(-8px); }
+  .project-card:hover { transform: translateY(-6px); }
 
   .project-visual {
-    height: 280px;
+    height: 260px;
     background: rgba(0,0,0,0.05);
+    position: relative;
   }
 
-  .project-info { padding: 40px; }
+  .project-info { padding: 36px; }
 
   .project-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
-  .project-year {
-    font-size: 0.8rem;
+  .year {
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--secondary);
+    letter-spacing: 1px;
   }
 
-  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .tag {
     background: rgba(0,0,0,0.07);
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 50px;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
   }
 
   .project-info h2 {
-    font-size: 1.8rem;
-    letter-spacing: -1px;
-    margin-bottom: 12px;
+    font-size: 1.6rem;
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+    line-height: 1.2;
   }
 
   .project-info p {
     color: var(--secondary);
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
+    font-size: 0.9rem;
   }
 
   .project-link {
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.9rem;
     color: var(--primary);
-    border-bottom: 2px solid var(--primary);
+    border-bottom: 1.5px solid var(--primary);
     padding-bottom: 2px;
   }
 
   @media (max-width: 768px) {
     .projects-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
+    .page-header { flex-direction: column; gap: 20px; }
   }
 </style>
