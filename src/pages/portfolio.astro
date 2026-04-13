@@ -5,66 +5,72 @@ import Navbar from '../components/Navbar.astro';
 const projects = [
   {
     title: "AWS Static Website CI/CD",
-    tags: ["S3", "CloudFront", "GitHub Actions", "Astro"],
-    desc: "Portfolio website deployed on AWS with a full CI/CD pipeline using OIDC authentication — no secrets stored.",
+    role: "DevOps Engineer",
+    tags: ["S3", "CloudFront", "GitHub Actions", "OIDC", "Astro"],
+    desc: "Personal portfolio website deployed on AWS with a fully automated CI/CD pipeline. Uses OIDC authentication — zero long-lived credentials stored on GitHub. Custom domain with SSL via Route 53.",
+    highlights: ["Automated deployment on every push to main", "CloudFront Functions for clean URL routing", "Origin Access Control for S3 security"],
     year: "2024",
     color: "#F0F0F0"
   },
   {
     title: "3-Tier Architecture on AWS",
-    tags: ["ECS Fargate", "Docker", "RDS", "ALB"],
-    desc: "Complete 3-tier application architecture on AWS Cloud with auto-scaling and load balancing.",
+    role: "Cloud Engineer",
+    tags: ["ECS Fargate", "Docker", "RDS", "ALB", "VPC"],
+    desc: "Production-grade 3-tier application on AWS. Frontend on S3/CloudFront, backend containerized on ECS Fargate behind an ALB, database on RDS with Multi-AZ deployment.",
+    highlights: ["Auto Scaling with target tracking", "Private subnet for DB layer", "Blue/Green deployment strategy"],
     year: "2024",
     color: "#EAE8FF"
   },
   {
     title: "Serverless REST API",
-    tags: ["Lambda", "API Gateway", "DynamoDB"],
-    desc: "Serverless RESTful API capable of handling millions of requests per day with zero server management.",
+    role: "Cloud Engineer",
+    tags: ["Lambda", "API Gateway", "DynamoDB", "Python"],
+    desc: "Serverless RESTful API handling CRUD operations with zero server management. Built with AWS Lambda and API Gateway, backed by DynamoDB for high-performance NoSQL storage.",
+    highlights: ["Pay-per-request pricing model", "Sub-100ms cold start optimization", "API key authentication"],
     year: "2024",
     color: "#E8F5E9"
   },
   {
-    title: "DevOps Monitoring Dashboard",
-    tags: ["Kubernetes", "Prometheus", "Grafana"],
-    desc: "Comprehensive monitoring and observability stack for microservices running on Kubernetes.",
-    year: "2024",
+    title: "Mobile App — Flutter",
+    role: "Software Engineer",
+    tags: ["Flutter", "Dart", "Firebase", "REST API"],
+    desc: "Cross-platform mobile application built during internship at Thien An Studio. Implemented complex UI components, state management with BLoC, and integrated backend APIs.",
+    highlights: ["BLoC state management pattern", "Pixel-perfect UI from Figma designs", "Push notifications with FCM"],
+    year: "2023",
     color: "#FFF3E0"
   },
 ];
 ---
 
-<Layout title="Portfolio | Truong Tu Dev">
+<Layout title="Portfolio | Truong Tu">
   <Navbar active="portfolio" />
 
   <main class="page">
     <div class="page-header">
       <div>
-        <h1>My <span class="muted">Work</span></h1>
-        <p>A collection of my Cloud & DevOps projects</p>
-      </div>
-      <div class="header-count">
-        <span>{projects.length}</span>
-        <small>Projects</small>
+        <h1>My <span class="muted">Projects</span></h1>
+        <p>Real-world projects I've built and deployed — not just code on GitHub</p>
       </div>
     </div>
 
-    <div class="projects-grid">
-      {projects.map((p) => (
-        <div class="project-card" style={`background: ${p.color}`}>
-          <div class="project-visual"></div>
-          <div class="project-info">
+    <div class="projects-list">
+      {projects.map((p, i) => (
+        <article class="project-card" style={`background: ${p.color}`}>
+          <div class="project-top">
             <div class="project-meta">
               <span class="year">{p.year}</span>
-              <div class="tags">
-                {p.tags.map(tag => <span class="tag">{tag}</span>)}
-              </div>
+              <span class="role">{p.role}</span>
             </div>
-            <h2>{p.title}</h2>
-            <p>{p.desc}</p>
-            <a href="#" class="project-link">View Project ↗</a>
+            <div class="tags">
+              {p.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
           </div>
-        </div>
+          <h2>{p.title}</h2>
+          <p class="project-desc">{p.desc}</p>
+          <ul class="project-highlights">
+            {p.highlights.map(h => <li>{h}</li>)}
+          </ul>
+        </article>
       ))}
     </div>
   </main>
@@ -74,109 +80,102 @@ const projects = [
   .page { padding: 40px 5% 120px; }
 
   .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
 
   .page-header h1 {
-    font-size: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(3rem, 7vw, 6rem);
     letter-spacing: -4px;
     line-height: 1;
     margin-bottom: 16px;
   }
-  .muted { color: var(--secondary); }
-  .page-header p { font-size: 1rem; color: var(--secondary); }
+  .muted { color: #888; }
+  .page-header p { font-size: 1rem; color: #888; }
 
-  .header-count {
-    text-align: right;
-    padding-top: 8px;
-  }
-  .header-count span {
-    display: block;
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: -2px;
-  }
-  .header-count small {
-    font-size: 0.75rem;
-    color: var(--secondary);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  .projects-list {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
   }
 
   .project-card {
     border-radius: 28px;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    cursor: pointer;
+    padding: 48px;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .project-card:hover { transform: translateY(-6px); }
+  .project-card:hover { transform: translateY(-4px); }
 
-  .project-visual {
-    height: 260px;
-    background: rgba(0,0,0,0.05);
-    position: relative;
-  }
-
-  .project-info { padding: 36px; }
-
-  .project-meta {
+  .project-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
+
+  .project-meta { display: flex; gap: 12px; align-items: center; }
 
   .year {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--secondary);
+    color: #888;
     letter-spacing: 1px;
+  }
+
+  .role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: rgba(0,0,0,0.08);
+    padding: 4px 12px;
+    border-radius: 50px;
   }
 
   .tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .tag {
     background: rgba(0,0,0,0.07);
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 50px;
     font-size: 0.72rem;
     font-weight: 600;
   }
 
-  .project-info h2 {
-    font-size: 1.6rem;
-    letter-spacing: -0.8px;
-    margin-bottom: 10px;
+  .project-card h2 {
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
     line-height: 1.2;
   }
 
-  .project-info p {
-    color: var(--secondary);
-    line-height: 1.6;
-    margin-bottom: 28px;
-    font-size: 0.9rem;
+  .project-desc {
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-size: 0.92rem;
+    max-width: 700px;
   }
 
-  .project-link {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--primary);
-    border-bottom: 1.5px solid var(--primary);
-    padding-bottom: 2px;
+  .project-highlights {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .project-highlights li {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    background: rgba(255,255,255,0.6);
+    padding: 6px 14px;
+    border-radius: 50px;
+  }
+  .project-highlights li::before {
+    content: "✓ ";
+    color: #2E7D32;
   }
 
   @media (max-width: 768px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .page-header { flex-direction: column; gap: 20px; }
+    .project-card { padding: 28px; }
   }
 </style>

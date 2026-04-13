@@ -1,36 +1,81 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 
-const services = [
-  { icon: "☁️", title: "AWS Cloud Architecture", desc: "Design and deploy professional Cloud infrastructure: S3, CloudFront, ECS, RDS, Lambda, VPC with security best practices." },
-  { icon: "🤖", title: "DevOps & CI/CD", desc: "Build automated deployment pipelines with GitHub Actions, Jenkins, and GitLab CI following enterprise standards." },
-  { icon: "🐳", title: "Containerization", desc: "Containerize applications with Docker, manage Kubernetes clusters, and deploy on EKS/ECS at scale." },
-  { icon: "🔒", title: "Cloud Security", desc: "Security auditing, IAM configuration, WAF, Security Groups, and AWS Well-Architected compliance." },
-  { icon: "📊", title: "Monitoring & Observability", desc: "Set up comprehensive monitoring with CloudWatch, Prometheus, Grafana, and automated alerting systems." },
-  { icon: "⚡", title: "Performance Optimization", desc: "Optimize Cloud costs and performance: Auto Scaling, CDN tuning, database query optimization." }
+const skills = [
+  { 
+    category: "Cloud & Infrastructure",
+    icon: "☁️",
+    items: [
+      { name: "AWS (S3, CloudFront, EC2, ECS, RDS, Lambda, Route 53)", level: "Working" },
+      { name: "Linux Server Administration", level: "Working" },
+      { name: "Networking (VPC, Subnets, Security Groups)", level: "Learning" },
+    ]
+  },
+  { 
+    category: "DevOps & Automation",
+    icon: "🔧",
+    items: [
+      { name: "Docker & Containerization", level: "Working" },
+      { name: "GitHub Actions CI/CD", level: "Working" },
+      { name: "Terraform (IaC)", level: "Learning" },
+      { name: "Kubernetes", level: "Learning" },
+    ]
+  },
+  { 
+    category: "Development",
+    icon: "💻",
+    items: [
+      { name: "Flutter & Dart (Mobile)", level: "Experienced" },
+      { name: "Python & Bash (Scripting)", level: "Working" },
+      { name: "HTML/CSS/JS (Web)", level: "Working" },
+      { name: "Git & Version Control", level: "Working" },
+    ]
+  },
 ];
 ---
 
-<Layout title="Services | Truong Tu Dev">
+<Layout title="Skills | Truong Tu">
   <Navbar active="services" />
 
   <main class="page">
     <div class="page-header">
-      <div class="header-left">
-        <h1>What I <span class="muted">Do</span></h1>
-        <p>Professional Cloud & DevOps engineering services</p>
-      </div>
-      <div class="cta-box">
-        <h3>Start your project</h3>
-        <p>Let's discuss your idea and I'll help you bring it to life on the Cloud.</p>
-        <a href="mailto:tct31082004@gmail.com" class="cta-link">Get in touch ↗</a>
-      </div>
+      <h1>My <span class="muted">Skills</span></h1>
+      <p>Technologies and tools I work with daily — honest assessment of my current level</p>
     </div>
 
-    <div class="services-grid">
-      {services.map(s => <ServiceCard icon={s.icon} title={s.title} desc={s.desc} />)}
+    <div class="legend">
+      <div class="legend-item"><span class="dot experienced"></span> Experienced — Confident and productive</div>
+      <div class="legend-item"><span class="dot working"></span> Working — Using in real projects</div>
+      <div class="legend-item"><span class="dot learning"></span> Learning — Actively studying</div>
+    </div>
+
+    <div class="skills-grid">
+      {skills.map(group => (
+        <div class="skill-group">
+          <div class="group-header">
+            <span class="group-icon">{group.icon}</span>
+            <h2>{group.category}</h2>
+          </div>
+          <ul class="skill-list">
+            {group.items.map(item => (
+              <li>
+                <span class="skill-name">{item.name}</span>
+                <span class={`skill-level ${item.level.toLowerCase()}`}>{item.level}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="cta-box">
+      <h3>Currently Exploring</h3>
+      <p>
+        Kubernetes orchestration, Terraform for Infrastructure as Code, 
+        AWS Solutions Architect certification path, and monitoring with Prometheus & Grafana.
+      </p>
+      <a href="mailto:tct31082004@gmail.com" class="cta-link">Discuss a project ↗</a>
     </div>
   </main>
 </Layout>
@@ -38,25 +83,98 @@ const services = [
 <style>
   .page { padding: 40px 5% 120px; }
 
-  .page-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-    margin-bottom: 80px;
-  }
-
+  .page-header { margin-bottom: 32px; }
   .page-header h1 {
     font-size: clamp(3rem, 7vw, 6rem);
     letter-spacing: -4px;
     line-height: 1;
     margin-bottom: 16px;
   }
-  .muted { color: var(--secondary); }
-  .header-left p { font-size: 1rem; color: var(--secondary); }
+  .muted { color: #888; }
+  .page-header p { font-size: 1rem; color: #888; }
 
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 500;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot.experienced { background: #1A1A1A; }
+  .dot.working { background: #4CAF50; }
+  .dot.learning { background: #FF9800; }
+
+  /* Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .skill-group {
+    background: #F5F5F5;
+    border-radius: 24px;
+    padding: 36px;
+  }
+
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .group-icon { font-size: 1.6rem; }
+  .group-header h2 {
+    font-size: 1.1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .skill-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333;
+  }
+  .skill-level {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+  .skill-level.experienced { background: #1A1A1A; color: white; }
+  .skill-level.working { background: #E8F5E9; color: #2E7D32; }
+  .skill-level.learning { background: #FFF3E0; color: #E65100; }
+
+  /* CTA */
   .cta-box {
-    background: var(--primary);
+    background: #1A1A1A;
     color: white;
     padding: 48px;
     border-radius: 28px;
@@ -67,7 +185,7 @@ const services = [
     letter-spacing: -0.5px;
   }
   .cta-box p {
-    opacity: 0.65;
+    opacity: 0.6;
     line-height: 1.6;
     font-size: 0.9rem;
     margin-bottom: 28px;
@@ -81,17 +199,7 @@ const services = [
     padding-bottom: 2px;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
   @media (max-width: 900px) {
-    .page-header { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
   }
 </style>
