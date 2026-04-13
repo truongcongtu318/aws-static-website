@@ -117,7 +117,7 @@ const { active = "" } = Astro.props;
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 101;
+    z-index: 1000;
   }
   .menu-toggle span {
     width: 100%;
@@ -138,14 +138,14 @@ const { active = "" } = Astro.props;
       top: 0;
       right: -100%;
       width: 100%;
-      height: 100vh;
+      height: 100dvh; /* Dynamic viewport height to fix mobile gaps */
       background: white;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 40px;
       transition: right 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
-      z-index: 100;
+      z-index: 999; /* Ensure it's above everything */
       padding: 0;
     }
     
