@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+---
+
+<Layout title="TruongTu Dev | UX/UI Designer & Cloud Engineer">
+	<nav class="navbar">
+		<div class="logo">D.NOVA <span class="dot">.</span></div>
+		<ul class="nav-links">
+			<li><a href="#" class="active">How we work</a></li>
+			<li><a href="#">Portfolio</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Blog</a></li>
+		</ul>
+		<a href="#" class="btn-pill">Book A Call ↗</a>
+	</nav>
+
+	<main class="hero-container">
+		<div class="hero-left">
+			<span class="label">PRODUCT DESIGNER</span>
+			<div class="stats">
+				<div class="stat-item">
+					<strong>+200</strong>
+					<span>Project completed</span>
+				</div>
+				<div class="stat-item">
+					<strong>+50</strong>
+					<span>Startup raised</span>
+				</div>
+			</div>
+			
+			<h1 class="headline">Hello</h1>
+			<p class="sub-headline">— It's D.Nova a design wizard</p>
+			
+			<div class="scroll-down">
+				<span>Scroll down ↓</span>
+			</div>
+		</div>
+
+		<div class="hero-right">
+			<div class="image-bg">
+				<!-- Chèn ảnh của bạn vào đây -->
+			</div>
+		</div>
+	</main>
+
+	<section class="services">
+		<div class="section-header">
+			<h2>Services <span class="counter">03</span></h2>
+			<a href="#" class="view-all">View all ↗</a>
+		</div>
+		
+		<div class="services-grid">
+			<ServiceCard 
+				icon="🎨" 
+				title="UX/UI Design" 
+				desc="Thiết kế giao diện hiện đại, tập trung vào trải nghiệm người dùng tối ưu."
+			/>
+			<ServiceCard 
+				icon="☁️" 
+				title="AWS Cloud" 
+				desc="Triển khai hạ tầng Serverless, bảo mật và hiệu năng cao trên Cloud."
+			/>
+			<ServiceCard 
+				icon="🚀" 
+				title="DevOps CI/CD" 
+				desc="Tự động hóa quy trình triển khai phần mềm chuẩn doanh nghiệp."
+			/>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.navbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 30px 5%;
+	}
+
+	.logo {
+		font-weight: 800;
+		font-size: 1.5rem;
+		letter-spacing: -1px;
+	}
+
+	.logo .dot { color: var(--secondary); }
+
+	.nav-links {
+		display: flex;
+		list-style: none;
+		gap: 30px;
+	}
+
+	.nav-links a {
+		text-decoration: none;
+		color: var(--secondary);
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+
+	.nav-links a.active { color: var(--primary); }
+
+	/* Hero Section */
+	.hero-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		padding: 40px 5% 100px;
+		min-height: 80vh;
+		align-items: center;
+	}
+
+	.label {
+		writing-mode: vertical-rl;
+		transform: rotate(180deg);
+		position: absolute;
+		left: 2%;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--secondary);
+		letter-spacing: 2px;
+	}
+
+	.stats {
+		display: flex;
+		gap: 60px;
+		margin-bottom: 60px;
+	}
+
+	.stat-item strong {
+		display: block;
+		font-size: 2.5rem;
+		letter-spacing: -1px;
+	}
+
+	.stat-item span {
+		font-size: 0.75rem;
+		color: var(--secondary);
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.headline {
+		font-size: 10rem;
+		line-height: 0.8;
+		font-weight: 500;
+		letter-spacing: -8px;
+		margin-bottom: 20px;
+	}
+
+	.sub-headline {
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: var(--primary);
+	}
+
+	.scroll-down {
+		margin-top: 100px;
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	.image-bg {
+		width: 100%;
+		height: 600px;
+		background: #E0E0E0;
+		border-radius: 40px;
+	}
+
+	/* Services */
+	.services {
+		padding: 100px 5%;
+	}
+
+	.section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		margin-bottom: 60px;
+	}
+
+	.section-header h2 {
+		font-size: 4rem;
+		letter-spacing: -3px;
+	}
+
+	.counter {
+		font-size: 1.2rem;
+		color: var(--secondary);
+		margin-left: 20px;
+	}
+
+	.view-all {
+		text-decoration: none;
+		color: var(--primary);
+		font-weight: 700;
+		padding-bottom: 5px;
+		border-bottom: 2px solid var(--primary);
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 30px;
+	}
+
+	@media (max-width: 1024px) {
+		.hero-container { grid-template-columns: 1fr; }
+		.headline { font-size: 6rem; letter-spacing: -4px; }
+		.services-grid { grid-template-columns: 1fr; }
+		.image-bg { height: 400px; margin-top: 50px; }
+	}
+</style>

@@ -1,0 +1,65 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="TruongTu Dev - Professional Portfolio" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--primary: #222222;
+		--secondary: #7B7B7B;
+		--tertiary: #F8F8F8;
+		--white: #FFFFFF;
+		--accent: #000000;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	html {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		background: var(--tertiary);
+		color: var(--primary);
+	}
+	body {
+		min-height: 100vh;
+	}
+
+	.btn-pill {
+		padding: 12px 24px;
+		background: var(--accent);
+		color: var(--white);
+		text-decoration: none;
+		border-radius: 50px;
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+		border: none;
+		cursor: pointer;
+	}
+
+	.btn-pill:hover {
+		transform: scale(1.05);
+		box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+	}
+</style>
