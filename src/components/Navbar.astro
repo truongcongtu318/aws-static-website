@@ -9,16 +9,34 @@ const { active = "" } = Astro.props;
   <a href="/" class="logo">
     truongtu<span class="dot">.</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="/" class={active === "about" ? "active" : ""}>About Me</a></li>
     <li><a href="/portfolio" class={active === "portfolio" ? "active" : ""}>Portfolio</a></li>
     <li><a href="/services" class={active === "services" ? "active" : ""}>Skills</a></li>
     <li><a href="/blog" class={active === "blog" ? "active" : ""}>Blog</a></li>
   </ul>
-  <a href="mailto:tct31082004@gmail.com" class="book-call">
-    Book A Call ↗
-  </a>
+  
+  <div class="nav-right">
+    <a href="mailto:tct31082004@gmail.com" class="book-call">
+      Book A Call ↗
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </nav>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle?.addEventListener('click', () => {
+    navLinks?.classList.toggle('mobile-open');
+    menuToggle?.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  });
+</script>
 
 <style>
   .navbar {
@@ -82,8 +100,63 @@ const { active = "" } = Astro.props;
     opacity: 0.6;
   }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  /* Hamburger Menu Toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+  }
+  .menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .menu-toggle.active span:first-child { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.active span:last-child { transform: translateY(-6px) rotate(-45deg); }
+
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .navbar { padding: 24px 5%; }
+    .menu-toggle { display: flex; }
+    .book-call { display: none; } /* Ẩn bớt để tránh chật chội */
+    
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+      background: white;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      transition: right 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+      z-index: 100;
+      padding: 0;
+    }
+    
+    .nav-links.mobile-open {
+      right: 0;
+    }
+
+    .nav-links a {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
   }
 </style>
