@@ -31,17 +31,19 @@ const { active = "" } = Astro.props;
   }
 
   .logo {
-    font-size: 1.4rem;
+    font-size: 1.8rem; /* Tăng từ 1.4 lên 1.8 */
     font-weight: 800;
     text-decoration: none;
     color: var(--primary);
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
     display: flex;
-    align-items: center;
+    align-items: baseline; /* Căn lề theo chân chữ sẽ chuẩn hơn */
+    line-height: 1;
   }
   .dot {
-    color: #4A90E2; /* Màu xanh Cloud làm điểm nhấn */
-    margin-left: 1px;
+    color: #4A90E2; 
+    margin-left: 2px;
+    font-size: 2.2rem; /* Làm dấu chấm to và nổi bật hơn */
   }
 
   .nav-links {

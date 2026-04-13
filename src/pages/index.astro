@@ -33,60 +33,42 @@ import Navbar from '../components/Navbar.astro';
       <div class="social-links">
         <a href="https://github.com/truongcongtu318" target="_blank">GitHub</a>
         <span class="sep">/</span>
-        <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+        <a href="https://linkedin.com/in/truong-cong-tu" target="_blank">LinkedIn</a>
         <span class="sep">/</span>
-        <a href="tel:09xxxxxxx">09x xxx xxxx</a>
+        <a href="tel:0352029544">0352 029 544</a>
       </div>
     </div>
 
     <div class="hero-right">
-      <!-- Grid Layout mới -->
       <div class="bento-grid">
-        <!-- Card 1: Education Stats -->
-        <div class="bento-item stats-card">
-          <div class="stat">
-            <strong>VKU</strong>
-            <span>University</span>
+        <!-- Card 1: Current Job (Xbrain) -->
+        <div class="bento-item current-job">
+          <div class="card-head">
+            <span class="badge">Current</span>
+            <span class="comp">Xbrain</span>
           </div>
-          <div class="stat">
-            <strong>SE</strong>
-            <span>Software Eng.</span>
-          </div>
-          <div class="stat">
-            <strong>2026</strong>
-            <span>Graduation</span>
+          <h3>DevOps Engineer Intern</h3>
+          <p>Designing AWS infrastructure and automating CI/CD pipelines.</p>
+          <div class="card-footer">
+            <span class="date">April 2026 — Present</span>
           </div>
         </div>
 
-        <!-- Card 2: Main Focus -->
-        <div class="bento-item main-skill">
-          <span class="stack-label">Cloud & DevOps</span>
+        <!-- Card 2: Technical Stack -->
+        <div class="bento-item stack-card">
+          <span class="stack-label">Core Tech</span>
           <div class="stack-items">
             <span class="stack-pill">AWS</span>
             <span class="stack-pill">Docker</span>
-            <span class="stack-pill">GitHub Actions</span>
             <span class="stack-pill">Terraform</span>
           </div>
         </div>
 
-        <!-- Card 3: AWS Details -->
-        <div class="bento-item sub-skill aws">
-          <span class="stack-label">AWS Services</span>
-          <div class="stack-items">
-            <span class="stack-pill">S3</span>
-            <span class="stack-pill">ECS</span>
-            <span class="stack-pill">Route 53</span>
-          </div>
-        </div>
-
-        <!-- Card 4: Dev Skills -->
-        <div class="bento-item sub-skill dev">
-          <span class="stack-label">Development</span>
-          <div class="stack-items">
-            <span class="stack-pill">Flutter</span>
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">Bash</span>
-          </div>
+        <!-- Card 3: Previous Role -->
+        <div class="bento-item past-job">
+          <span class="badge gray">Previous Case</span>
+          <h4>Software Engineer</h4>
+          <span class="comp-small">Thien An Studio</span>
         </div>
       </div>
     </div>
@@ -194,7 +176,11 @@ import Navbar from '../components/Navbar.astro';
     <div class="cta-inner">
       <h2>Let's work together</h2>
       <p>I'm open to internship and junior DevOps/Cloud positions. Feel free to reach out!</p>
-      <a href="mailto:tct31082004@gmail.com" class="cta-link">tct31082004@gmail.com ↗</a>
+      <div class="cta-links">
+        <a href="mailto:tct31082004@gmail.com" class="cta-link">tct31082004@gmail.com ↗</a>
+        <span class="cta-sep">|</span>
+        <a href="tel:0352029544" class="cta-link">0352 029 544 ↗</a>
+      </div>
     </div>
   </section>
 </Layout>
@@ -295,62 +281,50 @@ import Navbar from '../components/Navbar.astro';
   /* Right column - Bento Grid */
   .hero-right { display: flex; flex-direction: column; width: 100%; }
 
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
-    gap: 16px;
-  }
-
   .bento-item {
-    padding: 24px;
     border-radius: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: transform 0.3s ease;
   }
-
-  /* Stat Card - Trải dài 2 cột */
-  .stats-card {
-    grid-column: span 2;
-    background: var(--tertiary);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 20px;
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-
-  /* Main Skill - Ocuppy full row hoặc cột lớn */
-  .main-skill {
+  .bento-item:hover { transform: translateY(-5px); }
+  /* Current Job Card */
+  .current-job {
     grid-column: span 2;
     background: var(--primary);
     color: white;
-    min-height: 140px;
+    padding: 32px;
   }
-
-  /* Sub Skills - 2 ô nhỏ bên dưới */
-  .sub-skill {
-    background: #EEEEEE;
-    min-height: 120px;
-  }
-  .sub-skill.aws { background: #E3F2FD; } /* Màu xanh nhẹ cho AWS */
-  .sub-skill.dev { background: #F3E5F5; } /* Màu tím nhẹ cho Dev */
-
-  .stat { text-align: center; }
-  .stat strong {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat span {
+  .card-head { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; }
+  .badge {
+    background: #4A90E2;
+    color: white;
     font-size: 0.65rem;
-    font-weight: 600;
-    color: var(--secondary);
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 50px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
+  .badge.gray { background: rgba(0,0,0,0.1); color: var(--secondary); }
+  .comp { font-weight: 700; font-size: 1.1rem; }
+  .current-job h3 { font-size: 1.6rem; margin: 0 0 12px; line-height: 1.2; }
+  .current-job p { opacity: 0.6; font-size: 0.9rem; margin-bottom: 20px; }
+  .card-footer .date { font-size: 0.75rem; font-weight: 600; opacity: 0.4; }
+
+  /* Stack Card */
+  .stack-card {
+    background: #E3F2FD;
+    padding: 24px;
+  }
+  
+  /* Past Job Card */
+  .past-job {
+    background: #F5F5F5;
+    padding: 24px;
+  }
+  .past-job h4 { font-size: 1rem; margin: 8px 0 4px; }
+  .comp-small { font-size: 0.8rem; color: var(--secondary); font-weight: 600; }
 
   .stack-label {
     display: block;
@@ -361,20 +335,15 @@ import Navbar from '../components/Navbar.astro';
     margin-bottom: 12px;
     opacity: 0.5;
   }
-  .main-skill .stack-label { color: rgba(255,255,255,0.5); }
-
   .stack-items { display: flex; flex-wrap: wrap; gap: 6px; }
   .stack-pill {
     padding: 4px 10px;
     border-radius: 50px;
     font-size: 0.72rem;
     font-weight: 600;
-    background: rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.2);
   }
-  .main-skill .stack-pill {
-    background: rgba(255,255,255,0.1);
-    color: white;
-  }
+  .stack-card .stack-pill { background: rgba(0,0,0,0.05); }
 
   /* ─── Section Divider ───────────────────── */
   .section-divider {
@@ -547,6 +516,15 @@ import Navbar from '../components/Navbar.astro';
     font-size: 0.9rem;
     border-bottom: 1.5px solid white;
     padding-bottom: 2px;
+  }
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .cta-sep {
+    opacity: 0.3;
   }
 
   /* ─── Responsive ────────────────────────── */
