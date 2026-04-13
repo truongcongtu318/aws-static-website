@@ -151,23 +151,22 @@ import ServiceCard from '../components/ServiceCard.astro';
     color: var(--secondary);
   }
 
-  /* ─── Hero Image (PNG transparent) ──────── */
+  /* ─── Hero Image ─────────────────────────── */
   .hero-image-wrap {
     position: absolute;
-    right: 3%;
-    bottom: 0;
-    width: 42%;
+    right: 0;
+    top: 0;
+    width: 52%;
     height: 100%;
     z-index: 1;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
   }
   .hero-img {
-    height: 92%;
     width: 100%;
-    object-fit: contain;
-    object-position: bottom center;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    /* Loại bỏ nền trắng bằng multiply - chỉ giữ lại tông tối */
+    mix-blend-mode: multiply;
   }
 
   /* ─── Services ───────────────────────────── */
