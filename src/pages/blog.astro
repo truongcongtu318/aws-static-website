@@ -1,0 +1,221 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  {
+    slug: "aws-static-website-cicd",
+    title: "Xây dựng Static Website chuẩn Production trên AWS",
+    excerpt: "Hành trình triển khai website cá nhân với S3, CloudFront, Route 53 và CI/CD Pipeline không cần mật khẩu bằng OIDC.",
+    date: "13 Tháng 4, 2024",
+    readTime: "8 phút đọc",
+    tags: ["AWS", "CI/CD", "CloudFront", "GitHub Actions"],
+    featured: true
+  },
+  {
+    slug: "oidc-github-aws",
+    title: "OIDC: Kết nối GitHub và AWS không cần Access Key",
+    excerpt: "Hướng dẫn chi tiết cấu hình OpenID Connect để GitHub Actions có thể deploy lên AWS một cách bảo mật 100%.",
+    date: "10 Tháng 4, 2024",
+    readTime: "5 phút đọc",
+    tags: ["Security", "OIDC", "IAM"],
+    featured: false
+  },
+  {
+    slug: "astro-vs-nextjs",
+    title: "Astro vs Next.js: Chọn gì cho Static Portfolio?",
+    excerpt: "So sánh chi tiết hai framework phổ biến nhất cho website tĩnh, đánh giá hiệu năng, chi phí và trải nghiệm lập trình.",
+    date: "5 Tháng 4, 2024",
+    readTime: "6 phút đọc",
+    tags: ["Astro", "Next.js", "Performance"],
+    featured: false
+  },
+  {
+    slug: "cloudfront-oac-s3",
+    title: "Bảo mật S3 với Origin Access Control (OAC)",
+    excerpt: "Cách cấu hình CloudFront để truy cập S3 Bucket riêng tư, thay thế OAI cũ bằng cơ chế OAC tiên tiến hơn.",
+    date: "1 Tháng 4, 2024",
+    readTime: "4 phút đọc",
+    tags: ["CloudFront", "S3", "Security"],
+    featured: false
+  }
+];
+
+const featured = posts.find(p => p.featured);
+const rest = posts.filter(p => !p.featured);
+---
+
+<Layout title="Blog | TruongTu Dev">
+  <nav class="navbar">
+    <div class="logo">D.NOVA <span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="/">How we work</a></li>
+      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+    </ul>
+    <a href="#contact" class="btn-pill">Book A Call ↗</a>
+  </nav>
+
+  <main class="blog-page">
+    <div class="page-header">
+      <h1>The <span class="muted">Blog</span></h1>
+      <p>Chia sẻ kiến thức về Cloud, DevOps và hành trình học AWS của tôi</p>
+    </div>
+
+    <!-- Featured Post -->
+    {featured && (
+      <article class="featured-post">
+        <div class="featured-visual"></div>
+        <div class="featured-content">
+          <div class="post-meta">
+            <span class="date">{featured.date}</span>
+            <span class="read-time">{featured.readTime}</span>
+            <span class="featured-badge">✦ Featured</span>
+          </div>
+          <h2>{featured.title}</h2>
+          <p>{featured.excerpt}</p>
+          <div class="post-tags">
+            {featured.tags.map(t => <span class="tag">{t}</span>)}
+          </div>
+          <a href={`/blog/${featured.slug}`} class="read-more">Đọc tiếp ↗</a>
+        </div>
+      </article>
+    )}
+
+    <!-- Rest of posts -->
+    <div class="posts-grid">
+      {rest.map(post => (
+        <article class="post-card">
+          <div class="post-visual"></div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span class="date">{post.date}</span>
+              <span class="read-time">{post.readTime}</span>
+            </div>
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+            <div class="post-tags">
+              {post.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+            <a href={`/blog/${post.slug}`} class="read-more">Đọc tiếp ↗</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 5%;
+  }
+  .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+  .logo .dot { color: var(--secondary); }
+  .nav-links { display: flex; list-style: none; gap: 40px; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+
+  .blog-page { padding: 60px 5% 120px; }
+
+  .page-header { margin-bottom: 80px; }
+  .page-header h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .muted { color: var(--secondary); }
+  .page-header p { font-size: 1.1rem; color: var(--secondary); }
+
+  /* Featured */
+  .featured-post {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--white);
+    border-radius: 32px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.3s;
+  }
+  .featured-post:hover { transform: translateY(-5px); }
+  .featured-visual { min-height: 400px; background: #E8E8E8; }
+  .featured-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+
+  /* Post Meta */
+  .post-meta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .date, .read-time { font-size: 0.8rem; font-weight: 600; color: var(--secondary); }
+  .featured-badge {
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+  }
+
+  .featured-content h2 {
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .featured-content p { color: var(--secondary); line-height: 1.6; margin-bottom: 24px; }
+
+  .post-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+  .tag {
+    background: var(--tertiary);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .read-more {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 2px;
+    align-self: flex-start;
+  }
+
+  /* Grid */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .post-card {
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .post-card:hover { transform: translateY(-5px); }
+  .post-visual { height: 200px; background: #EAEAEA; }
+  .post-content { padding: 32px; }
+  .post-content h3 { font-size: 1.2rem; letter-spacing: -0.5px; margin-bottom: 12px; line-height: 1.3; }
+  .post-content p { color: var(--secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+
+  @media (max-width: 768px) {
+    .featured-post { grid-template-columns: 1fr; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>

@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    icon: "☁️",
+    title: "AWS Cloud Architecture",
+    desc: "Thiết kế và triển khai hạ tầng Cloud chuyên nghiệp: S3, CloudFront, ECS, RDS, Lambda, VPC.",
+    price: "Liên hệ"
+  },
+  {
+    icon: "🤖",
+    title: "DevOps & CI/CD",
+    desc: "Xây dựng pipeline tự động hóa triển khai với GitHub Actions, Jenkins, GitLab CI chuẩn doanh nghiệp.",
+    price: "Liên hệ"
+  },
+  {
+    icon: "🐳",
+    title: "Containerization",
+    desc: "Containerize ứng dụng với Docker, quản lý cluster Kubernetes và triển khai trên EKS/ECS.",
+    price: "Liên hệ"
+  },
+  {
+    icon: "🔒",
+    title: "Cloud Security",
+    desc: "Audit bảo mật, cấu hình IAM, WAF, Security Groups và tuân thủ chuẩn bảo mật AWS Well-Architected.",
+    price: "Liên hệ"
+  },
+  {
+    icon: "📊",
+    title: "Monitoring & Observability",
+    desc: "Thiết lập hệ thống giám sát với CloudWatch, Prometheus, Grafana và cảnh báo tự động.",
+    price: "Liên hệ"
+  },
+  {
+    icon: "⚡",
+    title: "Performance Optimization",
+    desc: "Tối ưu chi phí và hiệu năng Cloud: Auto Scaling, CDN tuning, database optimization.",
+    price: "Liên hệ"
+  }
+];
+---
+
+<Layout title="Services | TruongTu Dev">
+  <nav class="navbar">
+    <div class="logo">D.NOVA <span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="/">How we work</a></li>
+      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="/services" class="active">Services</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+    <a href="#contact" class="btn-pill">Book A Call ↗</a>
+  </nav>
+
+  <main class="services-page">
+    <div class="page-header">
+      <div class="header-left">
+        <h1>What I <span class="muted">Do</span></h1>
+        <p>Các dịch vụ chuyên nghiệp trong lĩnh vực Cloud & DevOps</p>
+      </div>
+      <div class="header-right">
+        <div class="cta-box">
+          <h3>Bắt đầu dự án của bạn</h3>
+          <p>Hãy thảo luận về ý tưởng và tôi sẽ giúp bạn hiện thực hóa nó trên Cloud.</p>
+          <a href="#contact" class="btn-pill" style="display:inline-flex;margin-top:20px;">
+            Liên hệ ngay ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      {services.map(s => <ServiceCard icon={s.icon} title={s.title} desc={s.desc} />)}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 5%;
+  }
+  .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+  .logo .dot { color: var(--secondary); }
+  .nav-links { display: flex; list-style: none; gap: 40px; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+
+  .services-page { padding: 60px 5% 120px; }
+
+  .page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 80px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .muted { color: var(--secondary); }
+  .page-header p { font-size: 1.1rem; color: var(--secondary); }
+
+  .cta-box {
+    background: var(--primary);
+    color: white;
+    padding: 50px;
+    border-radius: 32px;
+    margin-top: 30px;
+  }
+  .cta-box h3 { font-size: 1.5rem; margin-bottom: 15px; }
+  .cta-box p { opacity: 0.7; line-height: 1.6; }
+  .cta-box .btn-pill { background: white; color: var(--primary); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .page-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
