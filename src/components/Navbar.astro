@@ -6,7 +6,9 @@ const { active = "" } = Astro.props;
 ---
 
 <nav class="navbar">
-  <div class="logo">T.TU <span class="dot">.</span></div>
+  <a href="/" class="logo">
+    truongtu<span class="dot">.</span>
+  </a>
   <ul class="nav-links">
     <li><a href="/" class={active === "about" ? "active" : ""}>About Me</a></li>
     <li><a href="/portfolio" class={active === "portfolio" ? "active" : ""}>Portfolio</a></li>
@@ -29,13 +31,18 @@ const { active = "" } = Astro.props;
   }
 
   .logo {
-    font-weight: 800;
     font-size: 1.4rem;
-    letter-spacing: -1px;
+    font-weight: 800;
+    text-decoration: none;
     color: var(--primary);
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
   }
-
-  .logo .dot { color: var(--secondary); }
+  .dot {
+    color: #4A90E2; /* Màu xanh Cloud làm điểm nhấn */
+    margin-left: 1px;
+  }
 
   .nav-links {
     display: flex;
