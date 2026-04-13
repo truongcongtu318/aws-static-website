@@ -3,47 +3,44 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 ---
 
-<Layout title="TruongTu Dev | Cloud Engineer & Developer">
+<Layout title="Truong Tu | Cloud Engineer & Developer">
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">D.NOVA <span class="dot">.</span></div>
+    <div class="logo">T.TU <span class="dot">.</span></div>
     <ul class="nav-links">
-      <li><a href="/" class="active">How we work</a></li>
+      <li><a href="/" class="active">About</a></li>
       <li><a href="/portfolio">Portfolio</a></li>
       <li><a href="/services">Services</a></li>
       <li><a href="/blog">Blog</a></li>
     </ul>
-    <a href="#contact" class="btn-pill">Book A Call ↗</a>
+    <a href="mailto:tct31082004@gmail.com" class="btn-pill">Book A Call ↗</a>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <!-- Vertical label -->
-    <span class="vertical-label">PRODUCT DESIGNER</span>
+    <span class="vertical-label">CLOUD ENGINEER</span>
 
-    <!-- Stats top left -->
     <div class="stats">
       <div class="stat">
         <strong>+200</strong>
-        <span>PROJECT COMPLETED</span>
+        <span>PROJECTS DONE</span>
       </div>
       <div class="stat">
         <strong>+50</strong>
-        <span>STARTUP RAISED</span>
+        <span>HAPPY CLIENTS</span>
       </div>
     </div>
 
-    <!-- Big typography -->
     <div class="hero-text">
       <h1 class="headline">Hello</h1>
-      <p class="subline">— It's Trương Tú, a Cloud Engineer</p>
+      <p class="subline">— It's Truong Tu, a Cloud Engineer</p>
     </div>
 
     <div class="scroll-hint">Scroll down ↓</div>
 
-    <!-- Hero image: full-height, right side, overlapping text -->
+    <!-- Hero image: full height right side, transparent PNG -->
     <div class="hero-image-wrap">
-      <img src="/me.jpg" alt="Trương Tú" class="hero-img" onerror="this.style.background='linear-gradient(160deg,#ddd,#bbb)';this.style.display='block';this.removeAttribute('src')" />
+      <img src="/me.png" alt="Truong Tu" class="hero-img" />
     </div>
   </section>
 
@@ -54,9 +51,9 @@ import ServiceCard from '../components/ServiceCard.astro';
       <a href="/services" class="view-all">View all ↗</a>
     </div>
     <div class="services-grid">
-      <ServiceCard icon="☁️" title="AWS Cloud" desc="Triển khai hạ tầng Serverless, bảo mật và hiệu năng cao trên AWS Cloud." />
-      <ServiceCard icon="🤖" title="DevOps CI/CD" desc="Tự động hóa pipeline triển khai phần mềm chuẩn doanh nghiệp với GitHub Actions." />
-      <ServiceCard icon="🎨" title="Web Development" desc="Xây dựng website hiệu năng cao bằng Astro, React và các công nghệ hiện đại." />
+      <ServiceCard icon="☁️" title="AWS Cloud" desc="Deploy serverless infrastructure with S3, CloudFront, ECS and Lambda on AWS." />
+      <ServiceCard icon="🤖" title="DevOps & CI/CD" desc="Build automated deployment pipelines with GitHub Actions, Docker and Kubernetes." />
+      <ServiceCard icon="🌐" title="Web Development" desc="Build high-performance websites using Astro, React and modern web technologies." />
     </div>
   </section>
 </Layout>
@@ -74,11 +71,7 @@ import ServiceCard from '../components/ServiceCard.astro';
   }
   .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
   .logo .dot { color: var(--secondary); }
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 40px;
-  }
+  .nav-links { display: flex; list-style: none; gap: 40px; }
   .nav-links a {
     text-decoration: none;
     color: var(--secondary);
@@ -92,56 +85,50 @@ import ServiceCard from '../components/ServiceCard.astro';
   .hero {
     position: relative;
     min-height: 100vh;
-    padding: 0 5%;
+    padding: 0 5% 80px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 80px;
   }
 
-  /* Vertical label */
   .vertical-label {
     position: absolute;
-    left: 18px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%) rotate(180deg);
     writing-mode: vertical-rl;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 3px;
     color: var(--secondary);
   }
 
-  /* Stats */
   .stats {
     display: flex;
     gap: 60px;
     position: absolute;
-    top: 140px;
+    top: 130px;
     left: 5%;
     z-index: 2;
   }
   .stat strong {
     display: block;
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -1px;
     line-height: 1;
   }
   .stat span {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     color: var(--secondary);
     text-transform: uppercase;
   }
 
-  /* Big text */
-  .hero-text {
-    position: relative;
-    z-index: 2;
-  }
+  .hero-text { position: relative; z-index: 2; }
+
   .headline {
     font-size: clamp(5rem, 16vw, 14rem);
     font-weight: 500;
@@ -150,45 +137,45 @@ import ServiceCard from '../components/ServiceCard.astro';
     margin-bottom: 16px;
   }
   .subline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--primary);
   }
 
   .scroll-hint {
     margin-top: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     position: relative;
     z-index: 2;
+    color: var(--secondary);
   }
 
-  /* Hero image: absolute right, full height */
+  /* ─── Hero Image (PNG transparent) ──────── */
   .hero-image-wrap {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 50%;
+    right: 3%;
+    bottom: 0;
+    width: 42%;
     height: 100%;
     z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
   .hero-img {
+    height: 92%;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 40px 0 0 40px;
-    background: linear-gradient(160deg, #ddd, #bbb);
-    display: block;
-    min-height: 400px;
+    object-fit: contain;
+    object-position: bottom center;
   }
 
   /* ─── Services ───────────────────────────── */
   .services {
     padding: 120px 5%;
-    background: var(--tertiary);
     position: relative;
     z-index: 3;
+    background: var(--tertiary);
   }
   .section-header {
     display: flex;
@@ -214,11 +201,10 @@ import ServiceCard from '../components/ServiceCard.astro';
     gap: 24px;
   }
 
-  /* ─── Responsive ────────────────────────── */
+  /* ─── Responsive ─────────────────────────── */
   @media (max-width: 768px) {
-    .hero-image-wrap { width: 100%; border-radius: 0; opacity: 0.15; }
-    .hero-image-wrap img { border-radius: 0; }
-    .stats { top: 120px; }
+    .hero-image-wrap { width: 100%; right: 0; opacity: 0.12; }
+    .stats { top: 110px; gap: 30px; }
     .services-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
