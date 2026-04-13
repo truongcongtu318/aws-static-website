@@ -27,56 +27,65 @@ import Navbar from '../components/Navbar.astro';
 
       <div class="hero-actions">
         <a href="/portfolio" class="btn-primary">View My Projects ↗</a>
-        <a href="mailto:tct31082004@gmail.com" class="btn-ghost">Contact Me</a>
+        <a href="mailto:tct31082004@gmail.com" class="btn-ghost">Email Me</a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/truongcongtu318" target="_blank">GitHub</a>
+        <span class="sep">/</span>
+        <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+        <span class="sep">/</span>
+        <a href="tel:09xxxxxxx">09x xxx xxxx</a>
       </div>
     </div>
 
     <div class="hero-right">
-      <div class="stats-block">
-        <div class="stat">
-          <strong>VKU</strong>
-          <span>University</span>
+      <!-- Grid Layout mới -->
+      <div class="bento-grid">
+        <!-- Card 1: Education Stats -->
+        <div class="bento-item stats-card">
+          <div class="stat">
+            <strong>VKU</strong>
+            <span>University</span>
+          </div>
+          <div class="stat">
+            <strong>SE</strong>
+            <span>Software Eng.</span>
+          </div>
+          <div class="stat">
+            <strong>2026</strong>
+            <span>Graduation</span>
+          </div>
         </div>
-        <div class="stat">
-          <strong>SE</strong>
-          <span>Software Eng.</span>
-        </div>
-        <div class="stat">
-          <strong>2025</strong>
-          <span>Graduation</span>
-        </div>
-      </div>
 
-      <!-- Tech stack -->
-      <div class="stack-block">
-        <div class="stack-group">
+        <!-- Card 2: Main Focus -->
+        <div class="bento-item main-skill">
           <span class="stack-label">Cloud & DevOps</span>
           <div class="stack-items">
             <span class="stack-pill">AWS</span>
             <span class="stack-pill">Docker</span>
             <span class="stack-pill">GitHub Actions</span>
             <span class="stack-pill">Terraform</span>
-            <span class="stack-pill">Linux</span>
           </div>
         </div>
-        <div class="stack-group">
-          <span class="stack-label">Development</span>
-          <div class="stack-items">
-            <span class="stack-pill">Flutter</span>
-            <span class="stack-pill">Dart</span>
-            <span class="stack-pill">Astro</span>
-            <span class="stack-pill">Python</span>
-            <span class="stack-pill">Bash</span>
-          </div>
-        </div>
-        <div class="stack-group">
+
+        <!-- Card 3: AWS Details -->
+        <div class="bento-item sub-skill aws">
           <span class="stack-label">AWS Services</span>
           <div class="stack-items">
             <span class="stack-pill">S3</span>
-            <span class="stack-pill">CloudFront</span>
-            <span class="stack-pill">ECS Fargate</span>
-            <span class="stack-pill">EC2</span>
+            <span class="stack-pill">ECS</span>
             <span class="stack-pill">Route 53</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Dev Skills -->
+        <div class="bento-item sub-skill dev">
+          <span class="stack-label">Development</span>
+          <div class="stack-items">
+            <span class="stack-pill">Flutter</span>
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">Bash</span>
           </div>
         </div>
       </div>
@@ -140,7 +149,7 @@ import Navbar from '../components/Navbar.astro';
     <div class="exp-list">
       <div class="exp-item">
         <div class="exp-meta">
-          <span class="exp-date">2024 — Present</span>
+          <span class="exp-date">April 2026 — Present</span>
           <span class="exp-type current">Current</span>
         </div>
         <div class="exp-content">
@@ -160,12 +169,12 @@ import Navbar from '../components/Navbar.astro';
 
       <div class="exp-item">
         <div class="exp-meta">
-          <span class="exp-date">2023 — 2024</span>
+          <span class="exp-date">2025 — 2026</span>
           <span class="exp-type">6 months</span>
         </div>
         <div class="exp-content">
           <div class="exp-header">
-            <h3>Flutter Software Engineer Intern</h3>
+            <h3>Software Engineer Intern</h3>
             <span class="exp-company">Thien An Studio</span>
           </div>
           <p>
@@ -263,59 +272,108 @@ import Navbar from '../components/Navbar.astro';
     padding-bottom: 2px;
   }
 
-  /* Right column */
-  .hero-right { display: flex; flex-direction: column; gap: 24px; }
+  /* Social Links under buttons */
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .social-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--secondary);
+    transition: color 0.2s;
+  }
+  .social-links a:hover { color: var(--primary); }
+  .sep {
+    color: #E0E0E0;
+    font-size: 0.8rem;
+  }
 
-  .stats-block {
+  /* Right column - Bento Grid */
+  .hero-right { display: flex; flex-direction: column; width: 100%; }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+  }
+
+  .bento-item {
+    padding: 24px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Stat Card - Trải dài 2 cột */
+  .stats-card {
+    grid-column: span 2;
+    background: var(--tertiary);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    background: var(--tertiary);
-    border-radius: 24px;
-    padding: 28px 24px;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
   }
+
+  /* Main Skill - Ocuppy full row hoặc cột lớn */
+  .main-skill {
+    grid-column: span 2;
+    background: var(--primary);
+    color: white;
+    min-height: 140px;
+  }
+
+  /* Sub Skills - 2 ô nhỏ bên dưới */
+  .sub-skill {
+    background: #EEEEEE;
+    min-height: 120px;
+  }
+  .sub-skill.aws { background: #E3F2FD; } /* Màu xanh nhẹ cho AWS */
+  .sub-skill.dev { background: #F3E5F5; } /* Màu tím nhẹ cho Dev */
+
   .stat { text-align: center; }
   .stat strong {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    letter-spacing: -1px;
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .stat span {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     color: var(--secondary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
 
-  .stack-block {
-    background: var(--primary);
-    border-radius: 24px;
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
   .stack-label {
     display: block;
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    opacity: 0.5;
   }
-  .stack-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .main-skill .stack-label { color: rgba(255,255,255,0.5); }
+
+  .stack-items { display: flex; flex-wrap: wrap; gap: 6px; }
   .stack-pill {
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(0,0,0,0.05);
+  }
+  .main-skill .stack-pill {
     background: rgba(255,255,255,0.1);
     color: white;
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-size: 0.76rem;
-    font-weight: 500;
   }
 
   /* ─── Section Divider ───────────────────── */
