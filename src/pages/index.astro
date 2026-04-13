@@ -3,211 +3,209 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 ---
 
-<Layout title="TruongTu Dev | UX/UI Designer & Cloud Engineer">
-	<nav class="navbar">
-		<div class="logo">D.NOVA <span class="dot">.</span></div>
-		<ul class="nav-links">
-			<li><a href="#" class="active">How we work</a></li>
-			<li><a href="#">Portfolio</a></li>
-			<li><a href="#">Services</a></li>
-			<li><a href="#">Blog</a></li>
-		</ul>
-		<a href="#" class="btn-pill">Book A Call ↗</a>
-	</nav>
+<Layout title="Truong Tu | Cloud Engineer & Developer">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">T.TU <span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="/" class="active">About</a></li>
+      <li><a href="/portfolio">Portfolio</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+    <a href="mailto:tct31082004@gmail.com" class="btn-pill">Book A Call ↗</a>
+  </nav>
 
-	<main class="hero-container">
-		<div class="hero-left">
-			<span class="label">PRODUCT DESIGNER</span>
-			<div class="stats">
-				<div class="stat-item">
-					<strong>+200</strong>
-					<span>Project completed</span>
-				</div>
-				<div class="stat-item">
-					<strong>+50</strong>
-					<span>Startup raised</span>
-				</div>
-			</div>
-			
-			<h1 class="headline">Hello</h1>
-			<p class="sub-headline">— It's D.Nova a design wizard</p>
-			
-			<div class="scroll-down">
-				<span>Scroll down ↓</span>
-			</div>
-		</div>
+  <!-- Hero -->
+  <section class="hero">
+    <span class="vertical-label">CLOUD ENGINEER</span>
 
-		<div class="hero-right">
-			<div class="image-bg">
-				<!-- Chèn ảnh của bạn vào đây -->
-			</div>
-		</div>
-	</main>
+    <div class="stats">
+      <div class="stat">
+        <strong>+200</strong>
+        <span>PROJECTS DONE</span>
+      </div>
+      <div class="stat">
+        <strong>+50</strong>
+        <span>HAPPY CLIENTS</span>
+      </div>
+    </div>
 
-	<section class="services">
-		<div class="section-header">
-			<h2>Services <span class="counter">03</span></h2>
-			<a href="#" class="view-all">View all ↗</a>
-		</div>
-		
-		<div class="services-grid">
-			<ServiceCard 
-				icon="🎨" 
-				title="UX/UI Design" 
-				desc="Thiết kế giao diện hiện đại, tập trung vào trải nghiệm người dùng tối ưu."
-			/>
-			<ServiceCard 
-				icon="☁️" 
-				title="AWS Cloud" 
-				desc="Triển khai hạ tầng Serverless, bảo mật và hiệu năng cao trên Cloud."
-			/>
-			<ServiceCard 
-				icon="🚀" 
-				title="DevOps CI/CD" 
-				desc="Tự động hóa quy trình triển khai phần mềm chuẩn doanh nghiệp."
-			/>
-		</div>
-	</section>
+    <div class="hero-text">
+      <h1 class="headline">Hello</h1>
+      <p class="subline">— It's Truong Tu, a Cloud Engineer</p>
+    </div>
+
+    <div class="scroll-hint">Scroll down ↓</div>
+
+    <!-- Hero image: full height right side, transparent PNG -->
+    <div class="hero-image-wrap">
+      <img src="/me.png" alt="Truong Tu" class="hero-img" />
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <h2>Services <span class="counter">03</span></h2>
+      <a href="/services" class="view-all">View all ↗</a>
+    </div>
+    <div class="services-grid">
+      <ServiceCard icon="☁️" title="AWS Cloud" desc="Deploy serverless infrastructure with S3, CloudFront, ECS and Lambda on AWS." />
+      <ServiceCard icon="🤖" title="DevOps & CI/CD" desc="Build automated deployment pipelines with GitHub Actions, Docker and Kubernetes." />
+      <ServiceCard icon="🌐" title="Web Development" desc="Build high-performance websites using Astro, React and modern web technologies." />
+    </div>
+  </section>
 </Layout>
 
 <style>
-	.navbar {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 30px 5%;
-	}
+  /* ─── Navbar ─────────────────────────────── */
+  .navbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 5%;
+    z-index: 10;
+  }
+  .logo { font-weight: 800; font-size: 1.4rem; letter-spacing: -1px; }
+  .logo .dot { color: var(--secondary); }
+  .nav-links { display: flex; list-style: none; gap: 40px; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .nav-links a.active, .nav-links a:hover { color: var(--primary); }
 
-	.logo {
-		font-weight: 800;
-		font-size: 1.5rem;
-		letter-spacing: -1px;
-	}
+  /* ─── Hero ───────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 0 5% 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 
-	.logo .dot { color: var(--secondary); }
+  .vertical-label {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--secondary);
+  }
 
-	.nav-links {
-		display: flex;
-		list-style: none;
-		gap: 30px;
-	}
+  .stats {
+    display: flex;
+    gap: 60px;
+    position: absolute;
+    top: 130px;
+    left: 5%;
+    z-index: 2;
+  }
+  .stat strong {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .stat span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--secondary);
+    text-transform: uppercase;
+  }
 
-	.nav-links a {
-		text-decoration: none;
-		color: var(--secondary);
-		font-weight: 600;
-		font-size: 0.9rem;
-	}
+  .hero-text { position: relative; z-index: 2; }
 
-	.nav-links a.active { color: var(--primary); }
+  .headline {
+    font-size: clamp(5rem, 16vw, 14rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    margin-bottom: 16px;
+  }
+  .subline {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
 
-	/* Hero Section */
-	.hero-container {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		padding: 40px 5% 100px;
-		min-height: 80vh;
-		align-items: center;
-	}
+  .scroll-hint {
+    margin-top: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+    color: var(--secondary);
+  }
 
-	.label {
-		writing-mode: vertical-rl;
-		transform: rotate(180deg);
-		position: absolute;
-		left: 2%;
-		font-size: 0.75rem;
-		font-weight: 700;
-		color: var(--secondary);
-		letter-spacing: 2px;
-	}
+  /* ─── Hero Image (PNG transparent) ──────── */
+  .hero-image-wrap {
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+    width: 42%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-img {
+    height: 92%;
+    width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
 
-	.stats {
-		display: flex;
-		gap: 60px;
-		margin-bottom: 60px;
-	}
+  /* ─── Services ───────────────────────────── */
+  .services {
+    padding: 120px 5%;
+    position: relative;
+    z-index: 3;
+    background: var(--tertiary);
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .section-header h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: -3px;
+  }
+  .counter { font-size: 1.2rem; color: var(--secondary); margin-left: 16px; }
+  .view-all {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 4px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
 
-	.stat-item strong {
-		display: block;
-		font-size: 2.5rem;
-		letter-spacing: -1px;
-	}
-
-	.stat-item span {
-		font-size: 0.75rem;
-		color: var(--secondary);
-		font-weight: 600;
-		text-transform: uppercase;
-	}
-
-	.headline {
-		font-size: 10rem;
-		line-height: 0.8;
-		font-weight: 500;
-		letter-spacing: -8px;
-		margin-bottom: 20px;
-	}
-
-	.sub-headline {
-		font-size: 1.2rem;
-		font-weight: 600;
-		color: var(--primary);
-	}
-
-	.scroll-down {
-		margin-top: 100px;
-		font-size: 0.8rem;
-		font-weight: 700;
-	}
-
-	.image-bg {
-		width: 100%;
-		height: 600px;
-		background: #E0E0E0;
-		border-radius: 40px;
-	}
-
-	/* Services */
-	.services {
-		padding: 100px 5%;
-	}
-
-	.section-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
-		margin-bottom: 60px;
-	}
-
-	.section-header h2 {
-		font-size: 4rem;
-		letter-spacing: -3px;
-	}
-
-	.counter {
-		font-size: 1.2rem;
-		color: var(--secondary);
-		margin-left: 20px;
-	}
-
-	.view-all {
-		text-decoration: none;
-		color: var(--primary);
-		font-weight: 700;
-		padding-bottom: 5px;
-		border-bottom: 2px solid var(--primary);
-	}
-
-	.services-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 30px;
-	}
-
-	@media (max-width: 1024px) {
-		.hero-container { grid-template-columns: 1fr; }
-		.headline { font-size: 6rem; letter-spacing: -4px; }
-		.services-grid { grid-template-columns: 1fr; }
-		.image-bg { height: 400px; margin-top: 50px; }
-	}
+  /* ─── Responsive ─────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-image-wrap { width: 100%; right: 0; opacity: 0.12; }
+    .stats { top: 110px; gap: 30px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
 </style>
