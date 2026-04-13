@@ -40,35 +40,31 @@ import Navbar from '../components/Navbar.astro';
     </div>
 
     <div class="hero-right">
-      <div class="journey-grid">
-        <!-- Card 1: The Story (Tall) -->
-        <div class="journey-card">
-          <span class="badge blue">My Journey</span>
-          <h3>From Dev to DevOps</h3>
-          <p>Started as a Software Engineer building mobile apps, now focused on designing resilient cloud infrastructure and automated pipelines.</p>
-          <a href="/portfolio" class="inline-link">See my projects ↗</a>
+      <div class="experience-stack">
+        <!-- Card 1: Xbrain (Current) -->
+        <div class="career-card current">
+          <div class="card-header">
+            <span class="badge">Current Role</span>
+            <span class="company">Xbrain</span>
+          </div>
+          <h3>DevOps Engineer Intern</h3>
+          <p>Cloud infrastructure, AWS Automation, and CI/CD pipelines.</p>
+          <div class="card-footer">
+            <span class="time">April 2026 — Present</span>
+          </div>
         </div>
 
-        <!-- Card 2: Xbrain -->
-        <div class="work-card xbrain">
-          <div class="card-head">
-            <span class="badge">Current</span>
-            <span class="comp">Xbrain</span>
+        <!-- Card 2: Thien An (Past) -->
+        <div class="career-card past">
+          <div class="card-header">
+            <span class="badge gray">Past Experience</span>
+            <span class="company">Thien An Studio</span>
           </div>
-          <h4>DevOps Intern</h4>
-          <p>AWS, CI/CD & Automation.</p>
-          <div class="card-date">Apr 2026 — Present</div>
-        </div>
-
-        <!-- Card 3: Thien An -->
-        <div class="work-card thienan">
-          <div class="card-head">
-            <span class="badge gray">Past</span>
-            <span class="comp">Thien An</span>
+          <h3>Software Engineer Intern</h3>
+          <p>Mobile developer focused on Flutter & UI/UX implementation.</p>
+          <div class="card-footer">
+            <span class="time">2025 — 2026 (6 Months)</span>
           </div>
-          <h4>Software Intern</h4>
-          <p>Flutter Mobile Development.</p>
-          <div class="card-date">2025 — 2026</div>
         </div>
       </div>
     </div>
@@ -281,55 +277,72 @@ import Navbar from '../components/Navbar.astro';
   /* Right column - Bento Grid */
   .hero-right { display: flex; flex-direction: column; width: 100%; }
 
-  /* Journey Grid - 100% Work Focus */
-  .journey-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 1fr);
+  /* Experience Stack - Wide Cards */
+  .experience-stack {
+    display: flex;
+    flex-direction: column;
     gap: 16px;
-    height: 100%;
+    width: 100%;
   }
 
-  .journey-card {
-    grid-row: span 2;
-    background: var(--primary);
-    color: white;
+  .career-card {
     padding: 32px;
-    border-radius: 24px;
+    border-radius: 28px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-  }
-  .journey-card h3 { font-size: 1.8rem; margin: 0; line-height: 1.2; letter-spacing: -1px; }
-  .journey-card p { opacity: 0.6; font-size: 0.95rem; line-height: 1.6; margin: 0; }
-  .inline-link { 
-    color: #4A90E2; 
-    text-decoration: none; 
-    font-weight: 700; 
-    font-size: 0.85rem;
-    margin-top: 10px;
-  }
-
-  .work-card {
-    padding: 24px;
-    border-radius: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    gap: 12px;
     transition: transform 0.3s ease;
   }
-  .work-card:hover { transform: translateY(-5px); }
+  .career-card:hover { transform: translateY(-5px); }
+
+  .career-card.current {
+    background: var(--primary);
+    color: white;
+  }
+  .career-card.past {
+    background: #F1F1F1;
+    color: var(--primary);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .company {
+    font-size: 0.9rem;
+    font-weight: 700;
+    opacity: 0.6;
+  }
   
-  .card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .comp { font-weight: 700; font-size: 0.8rem; opacity: 0.8; }
+  .career-card h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
   
-  .work-card.xbrain { background: #E3F2FD; }
-  .work-card.thienan { background: #F3E5F5; } /* Màu tím nhạt cho Flutter */
-  
-  .work-card h4 { font-size: 1rem; margin: 0 0 4px; letter-spacing: -0.5px; }
-  .work-card p { font-size: 0.75rem; color: var(--secondary); margin: 0; line-height: 1.4; }
-  .card-date { font-size: 0.65rem; font-weight: 700; opacity: 0.4; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .career-card p {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .career-card.past .card-footer {
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
   .badge {
     font-size: 0.65rem;
@@ -339,9 +352,8 @@ import Navbar from '../components/Navbar.astro';
     text-transform: uppercase;
     width: fit-content;
   }
-  .badge.blue { background: #4A90E2; color: white; }
-  .badge.gray { background: rgba(0,0,0,0.05); color: var(--secondary); }
-  .work-card.xbrain .badge { background: var(--primary); color: white; }
+  .career-card.current .badge { background: #4A90E2; color: white; }
+  .career-card.past .badge { background: rgba(0,0,0,0.05); color: var(--secondary); }
 
   .stack-label {
     display: block;
